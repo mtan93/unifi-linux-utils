@@ -160,12 +160,13 @@ keytool -delete -alias ${ALIAS} -keystore ${KEYSTORE} -deststorepass ${PASSWORD}
 # Import the temp PKCS12 file into the UniFi keystore
 printf "\nImporting SSL certificate into UniFi keystore...\n"
 keytool -importkeystore \
--srckeystore ${P12_TEMP} -srcstoretype PKCS12 \
--srcstorepass ${PASSWORD} \
 -destkeystore ${KEYSTORE} \
 -deststorepass ${PASSWORD} \
 -destkeypass ${PASSWORD} \
--alias ${ALIAS} -trustcacerts
+-srckeystore ${P12_TEMP} -srcstoretype PKCS12 \
+-srcstorepass ${PASSWORD} \
+-noprompt \
+-deststoretype pkcs12 \
 	
 # Import the certificate authority data into the UniFi keystore
 printf "\nImporting certificate authority into UniFi keystore...\n\n"
